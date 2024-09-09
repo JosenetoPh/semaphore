@@ -1,0 +1,14 @@
+---
+- name: Test Ping to Google
+  hosts: localhost
+  gather_facts: no
+
+  tasks:
+    - name: Ping Google DNS
+      command: ping -c 4 8.8.8.8
+      register: ping_result
+      ignore_errors: yes
+
+    - name: Display ping result
+      debug:
+        var: ping_result.stdout  
