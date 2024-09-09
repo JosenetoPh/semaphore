@@ -1,0 +1,14 @@
+- name: Congela versão do Docker
+  hosts: all
+
+  tasks:
+    - name: Adiciona o Docker ao hold no Debian
+      shell: sudo apt-mark hold docker*
+      when: ansible_os_family == 'Debian'
+
+    - name: Adiciona Docker ao exclude no RedHat
+      blockinfile:
+        path: /etc/yum.conf
+        block: 'exclude=docker*'
+        insertafter: EOF
+      when: ansible_os_family == 'RedHat'
