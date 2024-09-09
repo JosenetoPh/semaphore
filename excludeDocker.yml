@@ -1,5 +1,5 @@
 - name: Congela versão do Docker
-  hosts: all
+  hosts: myhosts2
 
   tasks:
     - name: Adiciona o Docker ao hold no Debian
